@@ -1,0 +1,43 @@
+def encrypt(text, s):
+    result = ""
+
+    for char in text:
+        if char.isupper():
+            result += chr((ord(char) + s - 65) % 26 + 65)
+        elif char.islower():
+            result += chr((ord(char) + s - 97) % 26 + 97)
+        else:
+            result += char  # Handle non-alphabetic characters
+
+    return result
+
+def decrypt(text, s):
+    result = ""
+
+    for char in text:
+        if char.isupper():
+            result += chr((ord(char) - s - 65) % 26 + 65)
+        elif char.islower():
+            result += chr((ord(char) - s - 97) % 26 + 97)
+        else:
+            result += char  # Handle non-alphabetic characters
+
+    return result
+
+def main():
+    text = input("Enter string to encrypt: ")
+    s = int(input("Enter shift: "))
+    encrypted_text = encrypt(text, s)
+    print(f"Text: {text}")
+    print(f"Shift: {s}")
+    print(f"Cipher: {encrypted_text}")
+
+    text1 = input("Enter string to decrypt: ")
+    s1 = int(input("Enter shift: "))
+    decrypted_text = decrypt(text1, s1)
+    print(f"Text: {text1}")
+    print(f"Shift: {s1}")
+    print(f"Cipher: {decrypted_text}")
+
+if __name__ == "__main__":
+    main()
